@@ -62,24 +62,22 @@ CREATE INDEX tweets_index_withheldincountries ON tweets USING gin(withheld_in_co
 
 CREATE TABLE tweet_urls (
     id_tweets BIGINT,
-    url TEXT, 
-    FOREIGN KEY (id_tweets) REFERENCES tweets(id_tweets) DEFERRABLE INITIALLY DEFERRED
+    url TEXT 
 );
 
 
 CREATE TABLE tweet_mentions (
     id_tweets BIGINT,
-    id_users BIGINT,
-    FOREIGN KEY (id_tweets) REFERENCES tweets(id_tweets) DEFERRABLE INITIALLY DEFERRED,
-    FOREIGN KEY (id_users) REFERENCES users(id_users) DEFERRABLE INITIALLY DEFERRED
+    id_users BIGINT
 );
+
 CREATE INDEX tweet_mentions_index ON tweet_mentions(id_users);
 
 CREATE TABLE tweet_tags (
     id_tweets BIGINT,
-    tag TEXT,
-    FOREIGN KEY (id_tweets) REFERENCES tweets(id_tweets) DEFERRABLE INITIALLY DEFERRED
+    tag TEXT
 );
+
 COMMENT ON TABLE tweet_tags IS 'This table links both hashtags and cashtags';
 CREATE INDEX tweet_tags_index ON tweet_tags(id_tweets);
 
@@ -87,8 +85,7 @@ CREATE INDEX tweet_tags_index ON tweet_tags(id_tweets);
 CREATE TABLE tweet_media (
     id_tweets BIGINT,
     url TEXT,
-    type TEXT,
-    FOREIGN KEY (id_tweets) REFERENCES tweets(id_tweets) DEFERRABLE INITIALLY DEFERRED
+    type TEXT
 );
 
 /*
