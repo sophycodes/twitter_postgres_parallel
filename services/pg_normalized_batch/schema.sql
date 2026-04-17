@@ -11,7 +11,7 @@ BEGIN;
  * inside of a tweet someone else's tweet.
  */
 CREATE TABLE users (
-    id_users BIGINT PRIMARY KEY,
+    id_users BIGINT,
     created_at TIMESTAMPTZ,
     updated_at TIMESTAMPTZ,
     url TEXT, 
@@ -32,7 +32,7 @@ CREATE TABLE users (
  * Tweets may be entered in hydrated or unhydrated form.
  */
 CREATE TABLE tweets (
-    id_tweets BIGINT PRIMARY KEY,
+    id_tweets BIGINT,
     id_users BIGINT,
     created_at TIMESTAMPTZ,
     in_reply_to_status_id BIGINT,
@@ -49,9 +49,7 @@ CREATE TABLE tweets (
     state_code VARCHAR(2),
     lang TEXT,
     place_name TEXT,
-    geo geometry,
-    FOREIGN KEY (id_users) REFERENCES users(id_users) DEFERRABLE INITIALLY DEFERRED,
-    FOREIGN KEY (in_reply_to_user_id) REFERENCES users(id_users) DEFERRABLE INITIALLY DEFERRED
+    geo geometry
 
     -- NOTE:
     -- We do not have the following foreign keys because they would require us
