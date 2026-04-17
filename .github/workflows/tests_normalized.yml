@@ -14,6 +14,7 @@ jobs:
         pip3 install -r requirements.txt
     - name: docker
       run: |
+        sudo apt-get install -y postgresql-client
         git submodule init
         git submodule update
         docker compose up -d --build
